@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Clock Signal Search</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  body { padding-top:50px; }
+</style>
+
+<!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+<script src="services\labs.js"></script>
+<script src="controllers\app.js"></script>
+<script src="labscore.js"></script>
+
+
+
+</head>
+<body>
+<div class="container" ng-app="rootApp" ng-controller="mainController">
+    
+    <div class="alert alert-info">
+      <p>Sort Type: {{ sortType }}</p>
+      <p>Sort Reverse: {{ sortReverse }}</p>
+      <p>Search Query: {{ searchFish }}</p>
+    </div>
+    
+    <form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon"><i class="fa fa-microchip"></i></div>
+          <input type="text" class="form-control" placeholder="Enter OMC in the format OMC-11111" ng-model="formData.labname">
+          <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+          <input type="text" class="form-control" placeholder="Enter Customer Email as person@company.com" ng-model="formData.emailaddr">
+        </div>      
+        <button type="submit" class="btn btn-primary btn-sm" ng-click="createTodo()">Search</button>
+      </div>
+    </form>
+    
+    <table class="table table-bordered table-striped">
+      
+      <thead>
+        <tr>
+          <td>
+            <a href="#" ng-click="sortType = 'roll.service_pid'; sortReverse = !sortReverse">
+              Product ID
+              <span ng-show="sortType == 'roll.service_pid' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'roll.service_pid' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
+            Serial Number
+              <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+            OMC 
+              <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+          <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
+            EDCS 
+              <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+            </a>
+          </td>
+          <td>
+            <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
+              Order Number 
+                <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+            <td>
+              <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
+                Return RMA 
+                  <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+              </td>
+              <td>
+                <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
+                  Order Priority Date
+                    <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </td>
+                <td>
+                  <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
+                    Impacted?
+                      <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                  </td>
+                  <td>
+                  <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
+                    Order Priority Date
+                      <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                  </td>
+                  <td>
+                      <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
+                        Order Prioritized?
+                          <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                        </a>
+                      </td>
+        </tr>
+      </thead>
+ 
+      <tbody>
+    
+      <tbody>
+      
+        <tr ng-repeat="roll in sushi | filter:searchFish">
+          <td>{{ roll.service_pid }}</td>
+          <td>{{ roll.serial_number }}</td>
+          <td>{{ roll.omc }}</td>
+          <td>{{ roll.edcs }}</td>
+          <td>{{ roll.order_number }}</td>
+          <td>{{ roll.return_rma }}</td>
+          <td>{{ roll.order_priority_date }}</td>
+          <td>{{ roll.impact_status }}</td>
+          <td>{{ roll.order_priority_date }}</td>
+          <td>{{ roll.order_process_status }}</td>
+
+        </tr>
+     
+      </tbody>
+      
+    </table>
+    
+    <p class="text-center" ng-show="loading">
+        <span class="fa fa-spinner fa-spin fa-3x"></span>
+    </p>
+    
+  </div>
+</body>
+</html>
