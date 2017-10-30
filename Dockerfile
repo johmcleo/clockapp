@@ -5,6 +5,8 @@ WORKDIR /opt/clockapp
 
 COPY ./* /opt/clockapp/
 
+RUN npm install
+
 # expose port
 EXPOSE 80
 
