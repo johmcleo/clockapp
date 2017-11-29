@@ -40,14 +40,30 @@ function getClockbyomc(res,omc){
 };
 
 function getClockbyomcemail(res,omc,emailaddr){
-	ClockMod.find({omc: omc,email_address: emailaddr}, function(err, clocks) {
-			// if there is an error retrieving, send the error. nothing after res.send(err) will execute
-			if (err)
-				res.send(err)
-			res.json(clocks); // return all todos in JSON format
-		});
+	ClockMod.find({omc: omc}, function(err, clocks) {
+		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+		if (err)
+			res.send(err)
+		res.json(clocks); // return all clocks in JSON format
+	});
+		
 };
 
+function getClockbyemail(res,emailaddr){
+	ClockMod.find( { $or:[{email: emailaddr,omc: omc}]}, function(err, clocks) {
+		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
+		if (!clocks.length) {
+			res.send(err)
+			return
+			  // return all clocks in JSON format
+		}
+		if (clocks[0].email = emailaddr) {
+			console.log(clocks[0].email)
+		 res.json(clocks)
+		}
+	});
+
+};
 module.exports = function(app) {
 
 	// api ---------------------------------------------------------------------
@@ -66,8 +82,8 @@ module.exports = function(app) {
 	app.get('/api/clocks/:omc/:emailaddr', function(req, res) {
 		omc = req.params.omc
 		emailaddr = req.params.emailaddr
-		getClockbyomcemail(res,omc,emailaddr);
-});
+		getClockbyemail(res,emailaddr);		
+	});
 
 app.get('/api/labs/arch/:labarch', function(req, res) {
 			labarch = req.params.labarch

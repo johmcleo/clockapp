@@ -8,7 +8,13 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-  body { padding-top:50px; }
+  body { padding-top:20px; padding-right: 350px; }
+  .form-group { font-size: 12px; padding-left: 350px; }
+  .jimmyjams { font-size: 12px; padding-left: 350px; }
+  .table-bordered { font-size: 12px;}
+
+  
+
 </style>
 
 <!-- JS -->
@@ -20,15 +26,17 @@
 
 
 </head>
-<body>
+<body>  
 <div class="container" ng-app="rootApp" ng-controller="mainController">
     
+  <div class="jimmyjams">
     <div class="alert alert-info">
       <p>Sort Type: {{ sortType }}</p>
       <p>Sort Reverse: {{ sortReverse }}</p>
       <p>Search Query: {{ searchFish }}</p>
     </div>
-    
+    </div>
+
     <form>
       <div class="form-group">
         <div class="input-group">
@@ -42,79 +50,142 @@
     </form>
     
     <table class="table table-bordered table-striped">
-      
+
       <thead>
         <tr>
           <td>
-            <a href="#" ng-click="sortType = 'roll.service_pid'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'service_pid'; sortReverse = !sortReverse">
               Product ID
-              <span ng-show="sortType == 'roll.service_pid' && !sortReverse" class="fa fa-caret-down"></span>
-              <span ng-show="sortType == 'roll.service_pid' && sortReverse" class="fa fa-caret-up"></span>
+              <span ng-show="sortType == 'service_pid' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'service_pid' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </td>
           <td>
-            <a href="#" ng-click="sortType = 'fish'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'serial_number'; sortReverse = !sortReverse">
             Serial Number
-              <span ng-show="sortType == 'fish' && !sortReverse" class="fa fa-caret-down"></span>
-              <span ng-show="sortType == 'fish' && sortReverse" class="fa fa-caret-up"></span>
+              <span ng-show="sortType == 'serial_number' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'serial_number' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </td>
           <td>
-            <a href="#" ng-click="sortType = 'tastiness'; sortReverse = !sortReverse">
+            <a href="#" ng-click="sortType = 'omc'; sortReverse = !sortReverse">
             OMC 
-              <span ng-show="sortType == 'tastiness' && !sortReverse" class="fa fa-caret-down"></span>
-              <span ng-show="sortType == 'tastiness' && sortReverse" class="fa fa-caret-up"></span>
+              <span ng-show="sortType == 'omc' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'omc' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </td>
           <td>
-          <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
-            EDCS 
-              <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
-              <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+          <a href="#" ng-click="sortType = 'months_since_original_ship'; sortReverse = !sortReverse">
+            Product Age(Months) 
+              <span ng-show="sortType == 'months_since_original_ship' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'months_since_original_ship' && sortReverse" class="fa fa-caret-up"></span>
             </a>
           </td>
           <td>
-            <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
-              Order Number 
-                <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
-                <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+            <a href="#" ng-click="sortType = 'expected_ship'; sortReverse = !sortReverse">
+              Expected Shipment(Months) 
+                <span ng-show="sortType == 'expected_ship' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'expected_ship' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+            </td>
+          <td>
+            <a href="#" ng-click="sortType = 'fix_on_fail_status'; sortReverse = !sortReverse">
+              Fix On Fail Status 
+                <span ng-show="sortType == 'fix_on_fail_status' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'fix_on_fail_status' && sortReverse" class="fa fa-caret-up"></span>
               </a>
             </td>
             <td>
-              <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
-                Return RMA 
-                  <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
-                  <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+              <a href="#" ng-click="sortType = 'impact_status'; sortReverse = !sortReverse">
+                Impacted?
+                  <span ng-show="sortType == 'impact_status' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'impact_status' && sortReverse" class="fa fa-caret-up"></span>
                 </a>
               </td>
               <td>
-                <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
-                  Order Priority Date
-                    <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
-                    <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                <a href="#" ng-click="sortType = 'entitled_status'; sortReverse = !sortReverse">
+                  Entitled?
+                    <span ng-show="sortType == 'entitled_status' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'entitled_status' && sortReverse" class="fa fa-caret-up"></span>
                   </a>
                 </td>
                 <td>
-                  <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
-                    Impacted?
-                      <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
-                      <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                  <a href="#" ng-click="sortType = 'order_number'; sortReverse = !sortReverse">
+                    Order Number
+                      <span ng-show="sortType == 'order_number' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'order_number' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                   </td>
                   <td>
-                  <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
-                    Order Priority Date
-                      <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
-                      <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                  <a href="#" ng-click="sortType = 'return_rma'; sortReverse = !sortReverse">
+                    Return RMA
+                      <span ng-show="sortType == 'return_rma' && !sortReverse" class="fa fa-caret-down"></span>
+                      <span ng-show="sortType == 'return_rma' && sortReverse" class="fa fa-caret-up"></span>
                     </a>
                   </td>
                   <td>
-                      <a href="#" ng-click="sortType = 'edcs'; sortReverse = !sortReverse">
-                        Order Prioritized?
-                          <span ng-show="sortType == 'edcs' && !sortReverse" class="fa fa-caret-down"></span>
-                          <span ng-show="sortType == 'edcs' && sortReverse" class="fa fa-caret-up"></span>
+                      <a href="#" ng-click="sortType = 'order_process_status'; sortReverse = !sortReverse">
+                        Order Processed?
+                          <span ng-show="sortType == 'order_process_status' && !sortReverse" class="fa fa-caret-down"></span>
+                          <span ng-show="sortType == 'order_process_status' && sortReverse" class="fa fa-caret-up"></span>
                         </a>
                       </td>
+                      <td>
+                        <a href="#" ng-click="sortType = 'email'; sortReverse = !sortReverse">
+                          Contact Email
+                            <span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+                            <span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span>
+                          </a>
+                        </td>
+                        <td>
+                          <a href="#" ng-click="sortType = 'ship_to_company'; sortReverse = !sortReverse">
+                            Ship to
+                              <span ng-show="sortType == 'ship_to_company' && !sortReverse" class="fa fa-caret-down"></span>
+                              <span ng-show="sortType == 'ship_to_company' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                          </td>
+                          <td>
+                            <a href="#" ng-click="sortType = 'address1'; sortReverse = !sortReverse">
+                              Address1
+                                <span ng-show="sortType == 'address1' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'address1' && sortReverse" class="fa fa-caret-up"></span>
+                              </a>
+                            </td>
+                            <td>
+                              <a href="#" ng-click="sortType = 'address2'; sortReverse = !sortReverse">
+                                Address2
+                                  <span ng-show="sortType == 'address2' && !sortReverse" class="fa fa-caret-down"></span>
+                                  <span ng-show="sortType == 'address2' && sortReverse" class="fa fa-caret-up"></span>
+                                </a>
+                              </td>
+                              <td>
+                                <a href="#" ng-click="sortType = 'city'; sortReverse = !sortReverse">
+                                  City
+                                    <span ng-show="sortType == 'city' && !sortReverse" class="fa fa-caret-down"></span>
+                                    <span ng-show="sortType == 'city' && sortReverse" class="fa fa-caret-up"></span>
+                                  </a>
+                                </td>
+                                <td>
+                                  <a href="#" ng-click="sortType = 'state_province'; sortReverse = !sortReverse">
+                                    State/Province
+                                      <span ng-show="sortType == 'state_province' && !sortReverse" class="fa fa-caret-down"></span>
+                                      <span ng-show="sortType == 'state_province' && sortReverse" class="fa fa-caret-up"></span>
+                                    </a>
+                                  </td>
+                                  <td>
+                                    <a href="#" ng-click="sortType = 'postal_code'; sortReverse = !sortReverse">
+                                      Postal Code
+                                        <span ng-show="sortType == 'postal_code' && !sortReverse" class="fa fa-caret-down"></span>
+                                        <span ng-show="sortType == 'postal_code' && sortReverse" class="fa fa-caret-up"></span>
+                                      </a>
+                                    </td>
+                                    <td>
+                                      <a href="#" ng-click="sortType = 'country'; sortReverse = !sortReverse">
+                                        Country
+                                          <span ng-show="sortType == 'country' && !sortReverse" class="fa fa-caret-down"></span>
+                                          <span ng-show="sortType == 'country' && sortReverse" class="fa fa-caret-up"></span>
+                                        </a>
+                                      </td>
         </tr>
       </thead>
  
@@ -122,17 +193,26 @@
     
       <tbody>
       
-        <tr ng-repeat="roll in sushi | filter:searchFish">
+        <tr ng-repeat="roll in sushi | orderBy:sortType:sortReverse | filter:searchFish">
           <td>{{ roll.service_pid }}</td>
           <td>{{ roll.serial_number }}</td>
           <td>{{ roll.omc }}</td>
-          <td>{{ roll.edcs }}</td>
+          <td>{{ roll.months_since_original_ship }}</td>
+          <td>{{ roll.expected_ship }}</td>
+          <td>{{ roll.fix_on_fail_status }}</td>
+          <td>{{ roll.impact_status }}</td>
+          <td>{{ roll.entitled_status }}</td>
           <td>{{ roll.order_number }}</td>
           <td>{{ roll.return_rma }}</td>
-          <td>{{ roll.order_priority_date }}</td>
-          <td>{{ roll.impact_status }}</td>
-          <td>{{ roll.order_priority_date }}</td>
           <td>{{ roll.order_process_status }}</td>
+          <td>{{ roll.email }}</td>
+          <td>{{ roll.ship_to_company }}</td>
+          <td>{{ roll.address1 }}</td>
+          <td>{{ roll.address2 }}</td>
+          <td>{{ roll.city }}</td>
+          <td>{{ roll.state_province }}</td>
+          <td>{{ roll.postal_code }}</td>
+          <td>{{ roll.country }}</td>
 
         </tr>
      

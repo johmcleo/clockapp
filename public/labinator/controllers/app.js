@@ -2,7 +2,7 @@ angular.module('sortApp', [])
 
 .controller('mainController',['$scope','$http','$filter','Clocks', function($scope, $http,$filter, Clocks) {
 
-  $scope.sortType     = 'name'; // set the default sort type
+  $scope.sortType     = 'roll.serial_number'; // set the default sort type
   $scope.sortReverse  = false;  // set the default sort order
   $scope.searchFish   = '';     // set the default search/filter term
   $scope.loading = false;
