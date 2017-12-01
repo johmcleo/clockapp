@@ -28,13 +28,21 @@
 </head>
 <body>  
 <div class="container" ng-app="rootApp" ng-controller="mainController">
-    
   <div class="jimmyjams">
+    <h1>Clock Signal Search</h1>
     <div class="alert alert-info">
       <p>Sort Type: {{ sortType }}</p>
       <p>Sort Reverse: {{ sortReverse }}</p>
       <p>Search Query: {{ searchFish }}</p>
     </div>
+    <p>With this tool you can lookup the status of an OMC case for Clock Signal Replacements</p>
+    <p>To search you need two pieces of information:</p>
+    <ul>
+      <li>OMC Number as OMC-12345</li>
+      <li>Customer email address on the OMC in the form of customer@company.com</li>
+    </ul>
+    <p>For any questions or issues please contact <a href="mailto:component-questions@cisco.com">component-questions@cisco.com</a></p>
+
     </div>
 
     <form>
