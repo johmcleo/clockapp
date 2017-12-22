@@ -1,7 +1,7 @@
 import csv
 import os
 
-inputFileName = "CSCMaster-latest.csv"
+inputFileName = "cscmaster-golden.csv"
 outputFileName = os.path.splitext(inputFileName)[0] + "_modified.csv"
 
 with open(inputFileName, 'rb') as inFile, open(outputFileName, 'wb') as outfile:

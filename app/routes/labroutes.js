@@ -50,7 +50,13 @@ function getClockbyomcemail(res,omc,emailaddr){
 };
 
 function getClockbyemail(res,emailaddr){
-	ClockMod.find( { $or:[{email: emailaddr,omc: omc}]}, function(err, clocks) {
+	ClockMod.find( {  $and:[
+		{$or:[
+			 {email: { $regex : new RegExp(emailaddr, "i")}}, 
+			 {email_address : { $regex : new RegExp(emailaddr, "i")}}
+		]},
+		{omc: omc}
+	]}, function(err, clocks) {
 		// if there is an error retrieving, send the error. nothing after res.send(err) will execute
 		if (!clocks.length) {
 			res.send(err)
